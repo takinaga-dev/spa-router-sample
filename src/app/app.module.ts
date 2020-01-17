@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { createCustomElement } from '@angular/elements';
 import { CustomFooterComponent } from './custom-footer/custom-footer.component';
 import { SpaRouterlinkDirective } from './spa-routerlink.directive';
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,8 @@ import { SpaRouterlinkDirective } from './spa-routerlink.directive';
   imports: [
     BrowserModule
   ],
+  exports: [SpaRouterlinkDirective],
+  providers: [Location, { provide: LocationStrategy, useClass: PathLocationStrategy }],
   entryComponents: [
     CustomFooterComponent
   ],
