@@ -1,27 +1,43 @@
-# SpaRouter
+# 概要
+このプロジェクトはSPAフレームワーク内で利用されている、webcomponentsからSPA的な遷移をするためのrouterLinkの代替であるappSpaRouterディレクティブのPOC的ななにかです。
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.7.
+## 利用例
+Angularで書かれたコードから`/sample`というパスへ遷移した後webcomponentsのfooterからトップ(`/`)へ戻るというシナリオを考えます。
 
-## Development server
+### a tagを利用すると
+![通常の遷移](./atag.gif)
+のように遷移しますが、
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### spaRouterを利用すると
+![spaRouter](./spa.gif)
+のように再ロードなしに遷移することが出来ます。
 
-## Code scaffolding
+## 利用方法
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+// app.module.ts
+...
+import { SpaRouterlinkDirective } from './spa-routerlink.directive';
+...
+@NgModule({
+  declarations: [
+    AppComponent,
+    SpaRouterlinkDirective
+  ],
+  exports: [SpaRouterlinkDirective],
+  ....
+```
 
-## Build
+```
+// xxx.html
+<p appSpaRouter='SPA側のルーターでルーティング定義されているパス'>クリック!</p>
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+と指定するとappSpaRouterプロパティで渡しているパス先に再ロードなく遷移します。
 
-## Running unit tests
+### 注意
+基本的に画面遷移にHTML5のpushState, pushStateを利用している場合は利用できると思いますが、Angular以外で動作確認してないです。
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 参考リポジトリ
+実際動作可能なリポジトリは、[こちら](https://github.com/takinaga-dev/webcomponentsInAngularSample)を参考にしてください。
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
