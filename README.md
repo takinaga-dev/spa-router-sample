@@ -2,11 +2,11 @@
 このプロジェクトはSPAフレームワーク内で利用されている、webcomponentsからSPA的な遷移をするためのrouterLinkの代替であるappSpaRouterディレクティブのPOC的ななにかです。
 
 ## 利用例
-Angularで書かれたコードから`/sample`というパスへ遷移した後webcomponentsのfooterからトップ(`/`)へ戻るというシナリオを考えます。
+Angularで書かれたアプリケーションから`/sample`というパスへ遷移した後、こちらが用意したwebcomponentsのfooterからトップ(`/`)へ戻るというシナリオを考えます。
 
 ### a tagを利用すると
 ![通常の遷移](./atag.gif)
-のように遷移しますが、
+のように画面の再ロードをして遷移しますが、
 
 ### spaRouterを利用すると
 ![spaRouter](./spa.gif)
